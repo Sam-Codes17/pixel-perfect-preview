@@ -22,8 +22,8 @@ function Cards() {
       <PageHeader kicker="Cards" title="RIFT Network virtual cards">
         These cards work only at merchants inside the RIFT Network. They aren't Visa or Mastercard cards and can't be used anywhere else.
       </PageHeader>
-      <div className="grid md:grid-cols-5 gap-4">
-        <div className="md:col-span-3 grid gap-4">
+      <div className="grid lg:grid-cols-5 gap-4">
+        <div className="lg:col-span-3 grid gap-4">
           <div className="grid gap-4 max-w-md">
             <PaymentCard />
             <PaymentCard variant="purple" />
@@ -33,7 +33,7 @@ function Cards() {
             <Empty>No purchases yet.</Empty>
           </Panel>
         </div>
-        <Panel title="New card" className="md:col-span-2">
+        <Panel title="New card" className="lg:col-span-2">
           <form className="grid gap-4" onSubmit={(e) => e.preventDefault()}>
             <Field label="Card name"><input className={inputCls} placeholder="Groceries" /></Field>
             <Field label="Monthly limit (USD)"><input className={`${inputCls} font-mono`} placeholder="500.00" /></Field>

@@ -26,8 +26,8 @@ function Transfer() {
       <PageHeader kicker="Transfer" title="Send money">
         RIFT checks every transfer for risk. High-risk transfers need RIFT KEY approval before they run.
       </PageHeader>
-      <div className="grid md:grid-cols-5 gap-4">
-        <Panel title="Details" className="md:col-span-3">
+      <div className="grid lg:grid-cols-5 gap-4">
+        <Panel title="Details" className="lg:col-span-3">
           <form className="grid gap-4" onSubmit={(e) => e.preventDefault()}>
             <div className="grid grid-cols-2 gap-2">
               {(["bank", "rfm"] as const).map((r) => (
@@ -55,7 +55,7 @@ function Transfer() {
             <p className="text-xs text-muted-foreground">Sending is turned off until accounts and the RIFT service are connected.</p>
           </form>
         </Panel>
-        <Panel title="Lifecycle" className="md:col-span-2">
+        <Panel title="Lifecycle" className="lg:col-span-2">
           <ol className="grid gap-3">
             {steps.map((s, i) => (
               <li key={s} className="flex items-center gap-3">
