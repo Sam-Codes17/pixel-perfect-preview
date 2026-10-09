@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
+import { Button } from "@/components/ui/button";
 import { AppShell, Field, PageHeader, Panel, Status, btnPrimary, inputCls } from "@/components/rift/ui";
 
 export const Route = createFileRoute("/transfer")({
@@ -30,7 +31,7 @@ function Transfer() {
           <form className="grid gap-4" onSubmit={(e) => e.preventDefault()}>
             <div className="grid grid-cols-2 gap-2">
               {(["bank", "rfm"] as const).map((r) => (
-                <button
+                <Button variant="outline"
                   type="button"
                   key={r}
                   onClick={() => setRail(r)}
@@ -38,7 +39,7 @@ function Transfer() {
                 >
                   <span className="font-display font-semibold block">{r === "bank" ? "Bank transfer" : "RIFT Money"}</span>
                   <span className="text-muted-foreground text-xs">{r === "bank" ? "Internal RIFT ledger" : "On-chain · Sepolia"}</span>
-                </button>
+                </Button>
               ))}
             </div>
             <Field label={rail === "bank" ? "Recipient account or email" : "Recipient wallet address"}>
@@ -50,7 +51,7 @@ function Transfer() {
             <Field label="Note">
               <input className={inputCls} placeholder="Optional" />
             </Field>
-            <button className={btnPrimary} disabled>Review transfer</button>
+            <Button className={btnPrimary} disabled>Review transfer</Button>
             <p className="text-xs text-muted-foreground">Sending is turned off until accounts and the RIFT service are connected.</p>
           </form>
         </Panel>
