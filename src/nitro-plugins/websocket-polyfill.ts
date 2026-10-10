@@ -7,10 +7,9 @@
  */
 import { WebSocket as WsWebSocket } from "ws";
 
-export default defineNitroPlugin(() => {
+export default function () {
   if (typeof globalThis.WebSocket === "undefined") {
     // @ts-expect-error — polyfilling the global with the ws implementation
     globalThis.WebSocket = WsWebSocket;
-    console.log("[websocket-polyfill] Polyfilled globalThis.WebSocket with ws package.");
   }
-});
+}
