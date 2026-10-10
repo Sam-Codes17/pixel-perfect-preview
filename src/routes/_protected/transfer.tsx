@@ -187,8 +187,8 @@ function Transfer() {
       const msg = String(err);
       if (msg.includes("INSUFFICIENT_BALANCE")) {
         setTxnError("Insufficient balance for this transfer.");
-      } else if (msg.includes("RIFT_REJECTED")) {
-        setTxnError(msg);
+      } else if (msg.includes("RIFT_REJECTED") || msg.includes("RIFT_SECURITY_ALERT")) {
+        setTxnError(msg.replace(/^Error:\s*/, ""));
       } else if (msg.includes("RIFT_UNREACHABLE")) {
         setTxnError("RIFT Security Platform is unreachable. Operation blocked for safety.");
       } else {

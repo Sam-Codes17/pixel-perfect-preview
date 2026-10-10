@@ -24,6 +24,14 @@ export interface TransferIntentRequest {
   destination_chain_id: number;
   destination_address: string;
   requested_by: string;
+  sender_user_id?: string;
+  sender_email?: string;
+  receiver_user_id?: string;
+  receiver_email?: string;
+  recent_tx_count_1h?: number;
+  volume_24h_base_units?: string;
+  is_cross_chain?: boolean;
+  bridge_protocol?: string;
 }
 
 export interface RiskAssessment {

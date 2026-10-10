@@ -54,16 +54,32 @@ export const getSecurityFindings = createServerFn({ method: "POST" })
   .handler(async ({ data }) => {
     const user = await requireAuth(data.token);
 
-    const { data: findings } = await supabaseAdmin
+    const { data: userWallets } = await supabaseAdmin
+      .from("wallets")
+      .select("id")
+      .eq("user_id", user.id);
+    const walletIds = (userWallets ?? []).map((w) => w.id);
+
+    let query = supabaseAdmin
       .from("rift_security_findings")
       .select(`
         id, external_id, rule_id, rule_name, severity, finding_type,
         status, confidence, evidence, finding_timestamp, resolved_at,
-        resolution_note, attribution_role, ingested_at
-      `)
-      .eq("attributed_user_id", user.id)
+        resolution_note, attribution_role, ingested_at,
+        sender_wallet_id, receiver_wallet_id, attributed_user_id
+      `);
+
+    if (walletIds.length > 0) {
+      query = query.or(
+        `attributed_user_id.eq.${user.id},sender_wallet_id.in.(${walletIds.join(",")}),receiver_wallet_id.in.(${walletIds.join(",")})`
+      );
+    } else {
+      query = query.eq("attributed_user_id", user.id);
+    }
+
+    const { data: findings } = await query
       .order("finding_timestamp", { ascending: false })
-      .limit(30);
+      .limit(50);
 
     return findings ?? [];
   });
