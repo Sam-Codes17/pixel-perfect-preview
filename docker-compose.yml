@@ -1,0 +1,18 @@
+version: "3.8"
+
+services:
+  rift-bank:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - VITE_SUPABASE_URL=https://gazjbspyjngfqdorlduh.supabase.co
+      - VITE_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imdhempic3B5am5nZnFkb3JsZHVoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTE1NjY5NDEsImV4cCI6MjEwNzE0Mjk0MX0.m_v_oyW1qdOO0x6ZKeQHyb4XkDt9v1yWyfv0bL2yrEU
+      - SUPABASE_SERVICE_ROLE_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imdhempic3B5am5nZnFkb3JsZHVoIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc5MTU2Njk0MSwiZXhwIjoyMTA3MTQyOTQxfQ.HMXqNx8wFmkWYOqx5GIfP_1CSWOW0sCBSrSjlcN8iYg
+      - RIFT_CORE_URL=http://localhost:8001/api/v1
+      - RIFT_API_KEY=dev_csb01_rift_key_simulation
+    restart: unless-stopped
