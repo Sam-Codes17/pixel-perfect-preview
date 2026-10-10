@@ -1,6 +1,14 @@
 // SERVER-SIDE ONLY — never import this in client code or VITE_* files
 // The service role key bypasses Row Level Security — use with care.
 import { createClient } from "@supabase/supabase-js";
+import { WebSocket as WsWebSocket } from "ws";
+
+// Polyfill WebSocket globally for Node.js environments that don't have it natively.
+// Node 22 has native WebSocket, but this ensures compatibility with older runtimes too.
+if (typeof globalThis.WebSocket === "undefined") {
+  // @ts-expect-error — patching global with the ws package implementation
+  globalThis.WebSocket = WsWebSocket;
+}
 
 const supabaseUrl = process.env["VITE_SUPABASE_URL"]!;
 const serviceRoleKey = process.env["SUPABASE_SERVICE_ROLE_KEY"]!;
@@ -13,6 +21,10 @@ export const supabaseAdmin = createClient(supabaseUrl, serviceRoleKey, {
   auth: {
     autoRefreshToken: false,
     persistSession: false,
+  },
+  realtime: {
+    // Explicitly pass WebSocket transport for Node.js SSR environments
+    transport: WsWebSocket as unknown as typeof WebSocket,
   },
 });
 
