@@ -13,6 +13,7 @@ export default defineConfig({
     }),
     nitro({
       preset: process.env.VERCEL ? "vercel" : undefined,
+      plugins: ["src/nitro-plugins/websocket-polyfill.ts"],
     }),
     react(),
     tsConfigPaths(),
