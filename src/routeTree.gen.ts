@@ -9,122 +9,311 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as IndexRouteImport } from './routes/index'
-import { Route as ActivityRouteImport } from './routes/activity'
-import { Route as CardsRouteImport } from './routes/cards'
-import { Route as RfmRouteImport } from './routes/rfm'
-import { Route as TransferRouteImport } from './routes/transfer'
+import { Route as ProtectedRouteImport } from './routes/_protected'
+import { Route as LoginRouteImport } from './routes/login'
+import { Route as RegisterRouteImport } from './routes/register'
+import { Route as ProtectedIndexRouteImport } from './routes/_protected/index'
+import { Route as ProtectedActivityRouteImport } from './routes/_protected/activity'
+import { Route as ProtectedAdminTrustRouteImport } from './routes/_protected/admin-trust'
+import { Route as ProtectedCardsRouteImport } from './routes/_protected/cards'
+import { Route as ProtectedExchangeRouteImport } from './routes/_protected/exchange'
+import { Route as ProtectedMerchantsRouteImport } from './routes/_protected/merchants'
+import { Route as ProtectedSettingsRouteImport } from './routes/_protected/settings'
+import { Route as ProtectedTransferRouteImport } from './routes/_protected/transfer'
+import { Route as ProtectedTrustRouteImport } from './routes/_protected/trust'
+import { Route as ProtectedWalletsRouteImport } from './routes/_protected/wallets'
 
-const IndexRoute = IndexRouteImport.update({
+const ProtectedRoute = ProtectedRouteImport.update({
+  id: '/_protected',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RegisterRoute = RegisterRouteImport.update({
+  id: '/register',
+  path: '/register',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProtectedIndexRoute = ProtectedIndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => ProtectedRoute,
 } as any)
-const ActivityRoute = ActivityRouteImport.update({
+const ProtectedActivityRoute = ProtectedActivityRouteImport.update({
   id: '/activity',
   path: '/activity',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => ProtectedRoute,
 } as any)
-const CardsRoute = CardsRouteImport.update({
+const ProtectedAdminTrustRoute = ProtectedAdminTrustRouteImport.update({
+  id: '/admin-trust',
+  path: '/admin-trust',
+  getParentRoute: () => ProtectedRoute,
+} as any)
+const ProtectedCardsRoute = ProtectedCardsRouteImport.update({
   id: '/cards',
   path: '/cards',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => ProtectedRoute,
 } as any)
-const RfmRoute = RfmRouteImport.update({
-  id: '/rfm',
-  path: '/rfm',
-  getParentRoute: () => rootRouteImport,
+const ProtectedExchangeRoute = ProtectedExchangeRouteImport.update({
+  id: '/exchange',
+  path: '/exchange',
+  getParentRoute: () => ProtectedRoute,
 } as any)
-const TransferRoute = TransferRouteImport.update({
+const ProtectedMerchantsRoute = ProtectedMerchantsRouteImport.update({
+  id: '/merchants',
+  path: '/merchants',
+  getParentRoute: () => ProtectedRoute,
+} as any)
+const ProtectedSettingsRoute = ProtectedSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => ProtectedRoute,
+} as any)
+const ProtectedTransferRoute = ProtectedTransferRouteImport.update({
   id: '/transfer',
   path: '/transfer',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => ProtectedRoute,
+} as any)
+const ProtectedTrustRoute = ProtectedTrustRouteImport.update({
+  id: '/trust',
+  path: '/trust',
+  getParentRoute: () => ProtectedRoute,
+} as any)
+const ProtectedWalletsRoute = ProtectedWalletsRouteImport.update({
+  id: '/wallets',
+  path: '/wallets',
+  getParentRoute: () => ProtectedRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
-  '/activity': typeof ActivityRoute
-  '/cards': typeof CardsRoute
-  '/rfm': typeof RfmRoute
-  '/transfer': typeof TransferRoute
+  '/': typeof ProtectedIndexRoute
+  '/login': typeof LoginRoute
+  '/register': typeof RegisterRoute
+  '/activity': typeof ProtectedActivityRoute
+  '/admin-trust': typeof ProtectedAdminTrustRoute
+  '/cards': typeof ProtectedCardsRoute
+  '/exchange': typeof ProtectedExchangeRoute
+  '/merchants': typeof ProtectedMerchantsRoute
+  '/settings': typeof ProtectedSettingsRoute
+  '/transfer': typeof ProtectedTransferRoute
+  '/trust': typeof ProtectedTrustRoute
+  '/wallets': typeof ProtectedWalletsRoute
 }
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
-  '/activity': typeof ActivityRoute
-  '/cards': typeof CardsRoute
-  '/rfm': typeof RfmRoute
-  '/transfer': typeof TransferRoute
+  '/login': typeof LoginRoute
+  '/register': typeof RegisterRoute
+  '/activity': typeof ProtectedActivityRoute
+  '/admin-trust': typeof ProtectedAdminTrustRoute
+  '/cards': typeof ProtectedCardsRoute
+  '/exchange': typeof ProtectedExchangeRoute
+  '/merchants': typeof ProtectedMerchantsRoute
+  '/settings': typeof ProtectedSettingsRoute
+  '/transfer': typeof ProtectedTransferRoute
+  '/trust': typeof ProtectedTrustRoute
+  '/wallets': typeof ProtectedWalletsRoute
+  '/': typeof ProtectedIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/': typeof IndexRoute
-  '/activity': typeof ActivityRoute
-  '/cards': typeof CardsRoute
-  '/rfm': typeof RfmRoute
-  '/transfer': typeof TransferRoute
+  '/_protected': typeof ProtectedRouteWithChildren
+  '/login': typeof LoginRoute
+  '/register': typeof RegisterRoute
+  '/_protected/activity': typeof ProtectedActivityRoute
+  '/_protected/admin-trust': typeof ProtectedAdminTrustRoute
+  '/_protected/cards': typeof ProtectedCardsRoute
+  '/_protected/exchange': typeof ProtectedExchangeRoute
+  '/_protected/merchants': typeof ProtectedMerchantsRoute
+  '/_protected/settings': typeof ProtectedSettingsRoute
+  '/_protected/transfer': typeof ProtectedTransferRoute
+  '/_protected/trust': typeof ProtectedTrustRoute
+  '/_protected/wallets': typeof ProtectedWalletsRoute
+  '/_protected/': typeof ProtectedIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/activity' | '/cards' | '/rfm' | '/transfer'
+  fullPaths:
+    | '/'
+    | '/login'
+    | '/register'
+    | '/activity'
+    | '/admin-trust'
+    | '/cards'
+    | '/exchange'
+    | '/merchants'
+    | '/settings'
+    | '/transfer'
+    | '/trust'
+    | '/wallets'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/activity' | '/cards' | '/rfm' | '/transfer'
-  id: '__root__' | '/' | '/activity' | '/cards' | '/rfm' | '/transfer'
+  to:
+    | '/login'
+    | '/register'
+    | '/activity'
+    | '/admin-trust'
+    | '/cards'
+    | '/exchange'
+    | '/merchants'
+    | '/settings'
+    | '/transfer'
+    | '/trust'
+    | '/wallets'
+    | '/'
+  id:
+    | '__root__'
+    | '/_protected'
+    | '/login'
+    | '/register'
+    | '/_protected/activity'
+    | '/_protected/admin-trust'
+    | '/_protected/cards'
+    | '/_protected/exchange'
+    | '/_protected/merchants'
+    | '/_protected/settings'
+    | '/_protected/transfer'
+    | '/_protected/trust'
+    | '/_protected/wallets'
+    | '/_protected/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
-  ActivityRoute: typeof ActivityRoute
-  CardsRoute: typeof CardsRoute
-  RfmRoute: typeof RfmRoute
-  TransferRoute: typeof TransferRoute
+  ProtectedRoute: typeof ProtectedRouteWithChildren
+  LoginRoute: typeof LoginRoute
+  RegisterRoute: typeof RegisterRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/': {
-      id: '/'
+    '/_protected': {
+      id: '/_protected'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof ProtectedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/register': {
+      id: '/register'
+      path: '/register'
+      fullPath: '/register'
+      preLoaderRoute: typeof RegisterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_protected/': {
+      id: '/_protected/'
       path: '/'
       fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof ProtectedIndexRouteImport
+      parentRoute: typeof ProtectedRoute
     }
-    '/activity': {
-      id: '/activity'
+    '/_protected/activity': {
+      id: '/_protected/activity'
       path: '/activity'
       fullPath: '/activity'
-      preLoaderRoute: typeof ActivityRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof ProtectedActivityRouteImport
+      parentRoute: typeof ProtectedRoute
     }
-    '/cards': {
-      id: '/cards'
+    '/_protected/admin-trust': {
+      id: '/_protected/admin-trust'
+      path: '/admin-trust'
+      fullPath: '/admin-trust'
+      preLoaderRoute: typeof ProtectedAdminTrustRouteImport
+      parentRoute: typeof ProtectedRoute
+    }
+    '/_protected/cards': {
+      id: '/_protected/cards'
       path: '/cards'
       fullPath: '/cards'
-      preLoaderRoute: typeof CardsRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof ProtectedCardsRouteImport
+      parentRoute: typeof ProtectedRoute
     }
-    '/rfm': {
-      id: '/rfm'
-      path: '/rfm'
-      fullPath: '/rfm'
-      preLoaderRoute: typeof RfmRouteImport
-      parentRoute: typeof rootRouteImport
+    '/_protected/exchange': {
+      id: '/_protected/exchange'
+      path: '/exchange'
+      fullPath: '/exchange'
+      preLoaderRoute: typeof ProtectedExchangeRouteImport
+      parentRoute: typeof ProtectedRoute
     }
-    '/transfer': {
-      id: '/transfer'
+    '/_protected/merchants': {
+      id: '/_protected/merchants'
+      path: '/merchants'
+      fullPath: '/merchants'
+      preLoaderRoute: typeof ProtectedMerchantsRouteImport
+      parentRoute: typeof ProtectedRoute
+    }
+    '/_protected/settings': {
+      id: '/_protected/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof ProtectedSettingsRouteImport
+      parentRoute: typeof ProtectedRoute
+    }
+    '/_protected/transfer': {
+      id: '/_protected/transfer'
       path: '/transfer'
       fullPath: '/transfer'
-      preLoaderRoute: typeof TransferRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof ProtectedTransferRouteImport
+      parentRoute: typeof ProtectedRoute
+    }
+    '/_protected/trust': {
+      id: '/_protected/trust'
+      path: '/trust'
+      fullPath: '/trust'
+      preLoaderRoute: typeof ProtectedTrustRouteImport
+      parentRoute: typeof ProtectedRoute
+    }
+    '/_protected/wallets': {
+      id: '/_protected/wallets'
+      path: '/wallets'
+      fullPath: '/wallets'
+      preLoaderRoute: typeof ProtectedWalletsRouteImport
+      parentRoute: typeof ProtectedRoute
     }
   }
 }
 
+interface ProtectedRouteChildren {
+  ProtectedActivityRoute: typeof ProtectedActivityRoute
+  ProtectedAdminTrustRoute: typeof ProtectedAdminTrustRoute
+  ProtectedCardsRoute: typeof ProtectedCardsRoute
+  ProtectedExchangeRoute: typeof ProtectedExchangeRoute
+  ProtectedMerchantsRoute: typeof ProtectedMerchantsRoute
+  ProtectedSettingsRoute: typeof ProtectedSettingsRoute
+  ProtectedTransferRoute: typeof ProtectedTransferRoute
+  ProtectedTrustRoute: typeof ProtectedTrustRoute
+  ProtectedWalletsRoute: typeof ProtectedWalletsRoute
+  ProtectedIndexRoute: typeof ProtectedIndexRoute
+}
+
+const ProtectedRouteChildren: ProtectedRouteChildren = {
+  ProtectedActivityRoute: ProtectedActivityRoute,
+  ProtectedAdminTrustRoute: ProtectedAdminTrustRoute,
+  ProtectedCardsRoute: ProtectedCardsRoute,
+  ProtectedExchangeRoute: ProtectedExchangeRoute,
+  ProtectedMerchantsRoute: ProtectedMerchantsRoute,
+  ProtectedSettingsRoute: ProtectedSettingsRoute,
+  ProtectedTransferRoute: ProtectedTransferRoute,
+  ProtectedTrustRoute: ProtectedTrustRoute,
+  ProtectedWalletsRoute: ProtectedWalletsRoute,
+  ProtectedIndexRoute: ProtectedIndexRoute,
+}
+
+const ProtectedRouteWithChildren = ProtectedRoute._addFileChildren(
+  ProtectedRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
-  IndexRoute: IndexRoute,
-  ActivityRoute: ActivityRoute,
-  CardsRoute: CardsRoute,
-  RfmRoute: RfmRoute,
-  TransferRoute: TransferRoute,
+  ProtectedRoute: ProtectedRouteWithChildren,
+  LoginRoute: LoginRoute,
+  RegisterRoute: RegisterRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
