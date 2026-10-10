@@ -12,9 +12,9 @@ ARG VITE_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBh
 ENV VITE_SUPABASE_URL=$VITE_SUPABASE_URL
 ENV VITE_SUPABASE_ANON_KEY=$VITE_SUPABASE_ANON_KEY
 
-# Install dependencies using package-lock
+# Install dependencies
 COPY package*.json ./
-RUN npm ci
+RUN npm install
 
 # Copy source files
 COPY . .
